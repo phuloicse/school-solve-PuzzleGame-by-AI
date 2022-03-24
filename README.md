@@ -20,7 +20,7 @@
     1##T##T
     1####T#
     ```
-    ### Unordered
+### Notations: 
     * _ : unused value 
     * '#' : an empty cell
     * 'T' : a tree cell 
