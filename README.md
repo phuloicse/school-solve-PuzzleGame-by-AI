@@ -8,7 +8,7 @@
 ### Step 1: Add the input to the game:
     **Example:**
     
-    ![Sample board.](https://scontent.xx.fbcdn.net/v/t1.15752-9/276123273_1144364023046939_2909223102056351214_n.png?stp=dst-png_s206x206&_nc_cat=100&ccb=1-5&_nc_sid=aee45a&_nc_ohc=JsWv8tycIZcAX9Yo4lC&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVIKU3vPXizW3-LnHrEqmrIFc0NgKgXwcEDXRIABRAiCKg&oe=62601548 "Sample board")
+   ![Sample board.](https://scontent.xx.fbcdn.net/v/t1.15752-9/276123273_1144364023046939_2909223102056351214_n.png?stp=dst-png_s206x206&_nc_cat=100&ccb=1-5&_nc_sid=aee45a&_nc_ohc=JsWv8tycIZcAX9Yo4lC&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVIKU3vPXizW3-LnHrEqmrIFc0NgKgXwcEDXRIABRAiCKg&oe=62601548 "Sample board")
     
     Will be preresented by the text input:
     ```
