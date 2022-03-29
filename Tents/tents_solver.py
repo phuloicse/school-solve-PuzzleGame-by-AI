@@ -3,7 +3,7 @@ import sys
 from enum import Enum
 from typing import Dict, List, Set, Any
 
-from classes.tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, StackFrontier, TentNode, TreeNode, get_node_char, Action
+from classes.tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, StackFrontier, A_Star_Frontier, TentNode, TreeNode, get_node_char, Action
 
 
 
@@ -71,7 +71,7 @@ class Tents():
 
         # Initialize frontier to just the starting position
         self.current = self.start
-        frontier = StackFrontier()
+        frontier = A_Star_Frontier()
         frontier.add(self.current)
 
         # Initialize an empty explored set
@@ -147,17 +147,17 @@ class Tents():
         print(f"CONSTRAINTS:")
         self.print_contraints_dict()
         print("\nBOARD:")
-        self.start.board.print_board() 
+        self.start.board.print_board()
 
-    def print_solution(self, output_file_name = None): 
-        if self.solution: 
+    def print_solution(self, output_file_name = None):
+        if self.solution:
             print("\nSOLUTION BOARD: ")
             board_solved = self.solution[1][-1]
             board_solved.print_board()
-            if output_file_name: 
+            if output_file_name:
                 from draw_tent_board import draw_tents_board
-                draw_tents_board(board=board_solved, result_file_name=output_file_name) 
-            
+                draw_tents_board(board=board_solved, result_file_name=output_file_name)
+
 
     def print_node_state(self, game_node: GameNode):
         # Print a game state: default to print start node
@@ -199,10 +199,10 @@ if __name__ == '__main__':
     game.solve()
     print("Num of state explored: ", game.num_explored)
     print("Solution: ", game.solution)
-    
+
     output_file_name = None
-    if len(sys.argv)  == 3: 
-        output_file_name = str(sys.argv[2])  
+    if len(sys.argv)  == 3:
+        output_file_name = str(sys.argv[2])
     game.print_solution(output_file_name)
 
 

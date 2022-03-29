@@ -1,0 +1,3 @@
+*.pyc
+Tents/__pycache__/*
+Tents/classes/__pycache__/*
