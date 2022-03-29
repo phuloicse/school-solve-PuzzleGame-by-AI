@@ -6,7 +6,8 @@ from typing import List, Dict, Any
 from Constraints import Constraints
 from PuzzleSolver import PuzzleSolver as Solver
 from PuzzleState import PuzzleState as State
-
+import time
+import resource
 
 def print_usage() -> None:
     """
@@ -70,10 +71,17 @@ def main() -> None:
         print_usage()
         return
 
+    time_start = time.perf_counter()
+
     puzzles = len(sys.argv) - 1
     for index, path in enumerate(sys.argv[1:]):
         print("Processing puzzle {} of {}".format(index + 1, puzzles))
         process_puzzle(path)
+
+    # insert code here ...
+    time_elapsed = (time.perf_counter() - time_start)
+    memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+
 
 if __name__ == "__main__":
     main()
