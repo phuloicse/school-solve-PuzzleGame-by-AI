@@ -1,9 +1,10 @@
 import copy
 import sys
 
-from classes.tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, A_Star_Frontier, TentNode, TreeNode, get_node_char, Action
+from classes.tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, A_Star_Frontier, \
+    TentNode, TreeNode, get_node_char, Action, EMPTY_CHAR, TREE_CHAR, TENT_CHAR, StackFrontier
 import time
-import resource
+# import resource
 
 """
     _: the character to ignore (only valid at [0][0])
@@ -12,6 +13,11 @@ import resource
     number: only valid for contraints, specifying number of tents in this row or col
 """
 
+
+HEX_SET = {"A","B","C","D","E","F","1","2","3","4","5","6","7","8","9","0"}
+
+def hex_char_to_int(char:str):
+    return int("0x" + char,0)
 
 class Tents():
     def __init__(self, filename: str):
@@ -39,23 +45,24 @@ class Tents():
             for col_index, char in enumerate(row):
                 if char == "_":
                     continue
-                elif char == "#":
+                elif char == EMPTY_CHAR:
                     pos_node = PositionNode(row_index, col_index)
                     board[hash(pos_node)] = pos_node
-                elif char == "T":
+                elif char == TREE_CHAR:
                     tree_node = TreeNode(row_index, col_index)
                     board[hash(tree_node)] = tree_node
                     self.tree_dict[hash(tree_node)] = tree_node
-                elif char == "A":
+                elif char == TENT_CHAR:
                     tent = TentNode(row_index, col_index)
                     board[hash(tent)] = tent
-                elif char.isnumeric():
+                elif char in HEX_SET:
                     constraint_node = ConstraintNode(
-                        row_index, col_index, int(char))
+                        row_index, col_index, hex_char_to_int(char))
                     self.contraints_dict[hash(
                         constraint_node)] = constraint_node
                 else:
-                    raise Exception("Please check the Input again")
+                    print("char invalid is: " + str(char))
+                    raise Exception("Please check the Input again" + str(char))
 
         self.start = GameNode(board=BoardNode(board_grid=board, width=self.width - 1, height=self.height - 1,
                                               tents={}, trees=self.tree_dict, constraints=self.contraints_dict),
@@ -69,7 +76,7 @@ class Tents():
 
         # Initialize frontier to just the starting position
         self.current = self.start
-        frontier = A_Star_Frontier()
+        frontier = StackFrontier()
         frontier.add(self.current)
 
         # Initialize an empty explored set
@@ -208,8 +215,8 @@ if __name__ == '__main__':
 
     # insert code here ...
     time_elapsed = (time.perf_counter() - time_start)
-    memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    print("%5.1f secs %5.1f MByte" % (time_elapsed, memB))
+    # memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    # print("%5.1f secs %5.1f MByte" % (time_elapsed, memB))
 
 
 

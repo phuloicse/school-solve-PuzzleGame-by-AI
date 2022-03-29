@@ -63,11 +63,11 @@ def draw_nono_board(puzzle: PuzzleState, cell_size=100, result_file_name="board.
 
                 draw_rect_on_image(draw_image, col_to_paint, row_to_paint,
                                    BLACK_CELL_COLOR, cell_size)
-
-    image.save(result_file_name)
+    output_path = os.path.join(os.curdir, "output", f"{result_file_name}")
+    image.save(output_path)
 
     # Reopen temp image to paste overlays
-    result_im = Image.open(result_file_name).convert("RGB")
+    result_im = Image.open(output_path).convert("RGB")
 
     # Overlay the constraints
     for index, row_constraint in enumerate(row_constraints):
@@ -90,6 +90,6 @@ def draw_nono_board(puzzle: PuzzleState, cell_size=100, result_file_name="board.
             text_fg = text_img.resize((cell_size, cell_size)).convert("RGBA")
             result_im.paste(text_fg, box=box_to_paste, mask=text_fg)
 
-    output_path = os.path.join(os.curdir, "output", f"{result_file_name}")
+
     result_im.save(output_path)
     result_im.show()

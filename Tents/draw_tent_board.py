@@ -113,11 +113,12 @@ def draw_tents_board(board: BoardNode, cell_size = 100, result_file_name="board.
                 outline=BORDER_COLOR
             )
 
+    output_path = os.path.join(os.curdir,"output",f"{result_file_name}")
 
-    image.save(result_file_name)
+    image.save(output_path)
 
     # Reopen temp image to paste overlays
-    result_im = Image.open(result_file_name).convert("RGB")
+    result_im = Image.open(output_path).convert("RGB")
     # Overlay the images
     for pos in grid.values():
         row = pos.row_index
@@ -147,12 +148,11 @@ def draw_tents_board(board: BoardNode, cell_size = 100, result_file_name="board.
             text_fg = text_img.resize((cell_size,cell_size)).convert("RGBA")
             result_im.paste(text_fg, box=box_to_paste, mask=text_fg)
         
-    output_path = os.path.join(os.curdir,"output",f"{result_file_name}")
     result_im.save(output_path)
     result_im.show()
 
 def test_draw_board():
-    path = os.path.join(os.curdir,"puzzle1.txt")
+    path = os.path.join(os.curdir, "input/6x6/puzzle3.txt")
     game = Tents(path)
     draw_tents_board(board = game.start.board,cell_size=100,result_file_name="board_test.png")
 

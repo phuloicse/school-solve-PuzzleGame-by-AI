@@ -69,6 +69,14 @@ class A_Star_Frontier(StackFrontier):
             return node
 # Note: Index of the game start from 1
 
+TREE_CHAR = "T"
+TENT_CHAR = "L"
+EMPTY_CHAR = "#"
+
+HASH_FACTOR = 100
+
+def custom_index_hasher(row_index,col_index):
+    return int(int(row_index) * HASH_FACTOR + int(col_index))
 
 class PositionNode():
     def __init__(self, row_index, col_index):
@@ -77,7 +85,7 @@ class PositionNode():
 
     # Hashsing and Equal allows the positnode to be used as dictionary key
     def __hash__(self):
-        return self.row_index * 10 + self.col_index
+        return self.row_index * HASH_FACTOR + self.col_index
 
     def __eq__(self, other):
         return (self.row_index, self.col_index) == (other.row_index, other.col_index)
@@ -133,7 +141,7 @@ class ConstraintNode(PositionNode):
 
 def get_node_char(node: PositionNode) -> str:
     if isinstance(node, TreeNode):
-        return "T"
+        return TREE_CHAR
     elif isinstance(node, ConstraintNode):
         char = "C" + \
                str(node.col_index) if node.contraint_type == ConstraintNodeType.COL else "R" + \
@@ -141,13 +149,13 @@ def get_node_char(node: PositionNode) -> str:
                                                                                              node.row_index))
         return char + ":" + str(node.tents_number_required)
     elif isinstance(node, TentNode):
-        return "A"
+        return TENT_CHAR
     else:
-        return "#"
+        return EMPTY_CHAR
 
 
 def calculate_key(row_index: int, col_index: int) -> int:
-    return int(int(row_index) * 10 + int(col_index))
+    return int(int(row_index) * HASH_FACTOR + int(col_index))
 
 
 # Class defining an action
@@ -421,8 +429,8 @@ class BoardNode():
 
     def get_index_tuple_from_node(self, node: PositionNode):
         node_hash_val = hash(node)
-        row_index = int(node_hash_val / 10)
-        col_index = node_hash_val % 10
+        row_index = int(node_hash_val / HASH_FACTOR)
+        col_index = node_hash_val % HASH_FACTOR
         return (row_index, col_index)
 
     def get_row_constraint(self, node: PositionNode) -> ConstraintNode:
