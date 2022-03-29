@@ -7,7 +7,7 @@ from Constraints import Constraints
 from PuzzleSolver import PuzzleSolver as Solver
 from PuzzleState import PuzzleState as State
 import time
-import resource
+# import resource
 
 def print_usage() -> None:
     """
@@ -60,11 +60,11 @@ def process_puzzle(path: str) -> None:
         first = False
         print("Solution {}/{}".format(index + 1, len(solutions)))
 
-        from Nonogram.draw_nono_grams_board import draw_nono_board
-        draw_nono_board(solution)
-
         print(solution)
-    
+
+    from Nonogram.draw_nono_grams_board import draw_nono_board
+    draw_nono_board(solutions[-1])
+
 def main() -> None:
     if len(sys.argv) < 2 or \
        any(help_command in sys.argv for help_command in ["--help", "-h", "-?"]):
@@ -80,8 +80,8 @@ def main() -> None:
 
     # End Clock and get mem usage: (can only run on linux or wsl on windows /docker with linux)
     time_elapsed = (time.perf_counter() - time_start)
-    memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    print("%5.1f secs %5.1f MByte" % (time_elapsed, memB))
+    # memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    # print("%5.1f secs %5.1f MByte" % (time_elapsed, memB))
 
 if __name__ == "__main__":
     main()

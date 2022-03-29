@@ -58,7 +58,10 @@ def draw_nono_board(puzzle: PuzzleState, cell_size=100, result_file_name="board.
         for col in range(0, board_width):
             if puzzle.get_with_out_check(row, col):
                 # Draw an overlay color
-                draw_rect_on_image(draw_image, row + max_row_constraints_len, col + max_col_constraints_len,
+                row_to_paint = row + max_col_constraints_len
+                col_to_paint = col + max_row_constraints_len
+
+                draw_rect_on_image(draw_image, col_to_paint, row_to_paint,
                                    BLACK_CELL_COLOR, cell_size)
 
     image.save(result_file_name)
@@ -70,7 +73,7 @@ def draw_nono_board(puzzle: PuzzleState, cell_size=100, result_file_name="board.
     for index, row_constraint in enumerate(row_constraints):
         row = index + max_col_constraints_len
         start_col = max_row_constraints_len
-        for ordinal, constraint_value in enumerate(row_constraint):
+        for ordinal, constraint_value in enumerate(reversed(row_constraint)):
             col = start_col - ordinal - 1
             box_to_paste = (col * cell_size, row * cell_size)
             text_img = Image.open(get_num_path(constraint_value))
@@ -80,7 +83,7 @@ def draw_nono_board(puzzle: PuzzleState, cell_size=100, result_file_name="board.
     for index, col_constraint in enumerate(col_constraints):
         col = index + max_row_constraints_len
         start_row = max_col_constraints_len
-        for ordinal, constraint_value in enumerate(col_constraint):
+        for ordinal, constraint_value in enumerate(reversed(col_constraint)):
             row = start_row - ordinal - 1
             box_to_paste = (col * cell_size, row * cell_size)
             text_img = Image.open(get_num_path(constraint_value))
