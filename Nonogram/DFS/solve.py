@@ -70,7 +70,7 @@ def main() -> None:
        any(help_command in sys.argv for help_command in ["--help", "-h", "-?"]):
         print_usage()
         return
-
+    # Start clock
     time_start = time.perf_counter()
 
     puzzles = len(sys.argv) - 1
@@ -78,7 +78,7 @@ def main() -> None:
         print("Processing puzzle {} of {}".format(index + 1, puzzles))
         process_puzzle(path)
 
-    # insert code here ...
+    # End Clock and get mem usage: (can only run on linux or wsl on windows /docker with linux)
     time_elapsed = (time.perf_counter() - time_start)
     memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
 
