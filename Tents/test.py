@@ -36,7 +36,7 @@ if __name__ == "__main__":
     dog2 = Dog("2")
     dog3 = Dog("3")
     dog4 = Dog("4")
-    dog1.test(); 
+    dog1.test()
     board: BoardNode = BoardNode(board_grid={}, width=3, height=3, tents={'a': dog1}, trees={}, constraints={})
     board2: BoardNode = BoardNode(board_grid={}, width=3, height=3, tents={'a': dog2}, trees={}, constraints={})
     board3: BoardNode = BoardNode(board_grid={}, width=3, height=3, tents={'a': dog3}, trees={}, constraints={})

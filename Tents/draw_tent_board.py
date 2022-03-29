@@ -63,7 +63,7 @@ NORMAL_CELL_COLOR = (60, 60, 60, 128)
 POSSIBLE_CELL_COLOR = (10, 160, 60, 128)
 IMPOSSIBLE_CELL_COLOR = (255, 100, 60, 128)
 BORDER_COLOR = (255, 60, 60, 128)
-def draw_tents_board(board: BoardNode, cell_size = 100, result_file_name="board.png", draw_current_contstraints= False):
+def draw_tents_board(board: BoardNode, cell_size = 100, result_file_name="board.png", draw_current_contstraints= False, auto_output_path = None):
     grid = board.grid
     # Draw the initial constrain instead of current (Which is ZEROES for a solution board)
     initial_constraints = board.constraint_set 
@@ -113,8 +113,10 @@ def draw_tents_board(board: BoardNode, cell_size = 100, result_file_name="board.
                 outline=BORDER_COLOR
             )
 
-    output_path = os.path.join(os.curdir,"output",f"{result_file_name}")
-
+    output_path = os.path.join(os.curdir,"output",f"test/{result_file_name}")
+    if auto_output_path:
+        output_path = auto_output_path
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     image.save(output_path)
 
     # Reopen temp image to paste overlays
