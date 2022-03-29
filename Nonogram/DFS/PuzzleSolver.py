@@ -1,7 +1,6 @@
 from multiprocessing.connection import wait
 from typing import List
 
-from Nonogram.draw_nono_grams_board import draw_nono_board
 from PuzzleState import PuzzleState as State
 from Constraints import Constraints
 from Permutation import Permutation
