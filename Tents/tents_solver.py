@@ -1,11 +1,9 @@
 import copy
 import sys
-from enum import Enum
-from typing import Dict, List, Set, Any
 
-from classes.tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, StackFrontier, A_Star_Frontier, TentNode, TreeNode, get_node_char, Action
-
-
+from classes.tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, A_Star_Frontier, TentNode, TreeNode, get_node_char, Action
+import time
+import resource
 
 """
     _: the character to ignore (only valid at [0][0])
@@ -188,8 +186,11 @@ def draw_board_as_image(board: BoardNode, filename="board.png"):
 
 
 if __name__ == '__main__':
+
+    time_start = time.perf_counter()
+
     if len(sys.argv) not in [2,3]:
-        sys.exit("Usage: python Tents.py input_file.txt  ||  python Tents.py input_file.txt output_file_name")
+        sys.exit("Usage: python tents_solver.py input_file.txt  ||  python tents_solver.py input_file.txt output_file_name")
 
     game = Tents(str(sys.argv[1]))
     print("Tents initialized: ")
@@ -204,5 +205,11 @@ if __name__ == '__main__':
     if len(sys.argv)  == 3:
         output_file_name = str(sys.argv[2])
     game.print_solution(output_file_name)
+
+    # insert code here ...
+    time_elapsed = (time.perf_counter() - time_start)
+    memMb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0 / 1024.0
+    print("%5.1f secs %5.1f MByte" % (time_elapsed, memMb))
+
 
 

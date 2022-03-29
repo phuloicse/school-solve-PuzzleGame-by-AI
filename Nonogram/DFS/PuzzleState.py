@@ -11,6 +11,9 @@ class PuzzleState:
             [None for _ in range(constraints.width)] for _ in range(constraints.height)
         ]
 
+    def get_state(self):
+        return self._state
+
     def _check_limits(self, row: int, column: int) -> bool:
         return (0 <= row < self.constraints.height) and \
                (0 <= column < self.constraints.width)
@@ -26,6 +29,10 @@ class PuzzleState:
     def get(self, row: int, column: int) -> Union[bool, None]:
         assert self._check_limits(row, column)
         return self._state[row][column]
+
+    def get_with_out_check(self, row: int, column: int) -> Union[bool, None]:
+        return self._state[row][column]
+
 
     # Draw table for solutions
     def __str__(self) -> str:

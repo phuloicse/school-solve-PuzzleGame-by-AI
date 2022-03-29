@@ -7,16 +7,7 @@ from typing import Dict, List, Set
 import heapq
 import functools
 
-# * Frontier for BFS strategy
-class QueueFrontier(StackFrontier):
 
-    def remove(self):
-        if self.empty():
-            raise Exception("empty frontier")
-        else:
-            node = self.frontier[0]
-            self.frontier = self.frontier[1:]
-            return node
 
 
 # * Frontier for DFS strategy
@@ -43,10 +34,23 @@ class StackFrontier():
             self.frontier = self.frontier[:-1]
             return node
 
+# * Frontier for BFS strategy
+class QueueFrontier(StackFrontier):
+
+    def remove(self):
+        if self.empty():
+            raise Exception("empty frontier")
+        else:
+            node = self.frontier[0]
+            self.frontier = self.frontier[1:]
+            return node
+
+
 # * This frontier will keep an sorted list of nodes based on there heuristics function
 # * On removal, pop out the node with highest value of heuristics value
 # * On insert, calculate and push the node in its correct order
 # ==> Heap is suitable for this
+
 
 
 class A_Star_Frontier(StackFrontier):

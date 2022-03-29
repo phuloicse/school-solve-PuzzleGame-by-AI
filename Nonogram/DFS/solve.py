@@ -58,6 +58,10 @@ def process_puzzle(path: str) -> None:
             print()
         first = False
         print("Solution {}/{}".format(index + 1, len(solutions)))
+
+        from Nonogram.draw_nono_grams_board import draw_nono_board
+        draw_nono_board(solution)
+
         print(solution)
     
 def main() -> None:
