@@ -1,4 +1,5 @@
 from multiprocessing.connection import wait
+import sys
 from typing import List
 
 from PuzzleState import PuzzleState as State
@@ -13,6 +14,7 @@ class PuzzleSolver:
         self.constraints: Constraints = constraints
         self.permutation: Permutation = Permutation(constraints)
         self.counter = 1
+        
 
     def _depth_first_search(self, row: int) -> None:
         self.nodes += 1
@@ -20,17 +22,24 @@ class PuzzleSolver:
             self.max_row = row
             print("Row: {}, nodes: {}, nodes/s: {:.2f}".format(self.max_row, self.nodes,
                                                                self.nodes / (time.perf_counter() - self.start_time)))
-        print(self.state)
-        time.sleep(0.2)
+        # if you want to print out each step, uncomment below lines
+        # print("Step: " + str(self.step))
+        self.step += 1
+        # print(self.state)
+        # time.sleep(0.2)
 
         if not self.state.validate(row):
             return
-
+        if len(self.solutions):
+            return
         if row + 1 == self.constraints.height:
             self.solutions.append(copy.deepcopy(self.state))
             print("Done " + str(self.counter) + "th solution")
+            print("Done " +str(self.step) +" step")
             self.counter += 1
             return
+            # sys.exit()
+            # found = True
 
         # print(self.state)
 
@@ -49,6 +58,7 @@ class PuzzleSolver:
         self.solutions: List[State] = []
         self.nodes = -1
         self.max_row = 0
+        self.step = 0
         self.start_time = time.perf_counter()
         self._depth_first_search(-1)
-        return self.solutions
+        return self.solutions 
