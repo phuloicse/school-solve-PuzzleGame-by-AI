@@ -7,8 +7,8 @@ df = pd.read_json (r'.\data.json')
 df.to_csv (r'.\New3.csv', index = None)
 
 
-BFS = pd.read_csv("New.csv",na_values=["???","??? "])
-Astar =pd.read_csv("New.csv",na_values=["???","??? "])
+BFS = pd.read_csv("New3.csv",na_values=["???","??? "])
+Astar =pd.read_csv("New3.csv",na_values=["???","??? "])
 
 
 def drawChart(factor):

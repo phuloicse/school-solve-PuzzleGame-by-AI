@@ -34,6 +34,7 @@ class PuzzleSolver:
             return
         if row + 1 == self.constraints.height:
             self.solutions.append(copy.deepcopy(self.state))
+            self.solutions.append(self.step)
             print("Done " + str(self.counter) + "th solution")
             print("Done " +str(self.step) +" step")
             self.counter += 1
@@ -61,4 +62,5 @@ class PuzzleSolver:
         self.step = 0
         self.start_time = time.perf_counter()
         self._depth_first_search(-1)
+        # self.solutions.append(self.step)
         return self.solutions 
