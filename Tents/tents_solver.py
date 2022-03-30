@@ -154,14 +154,14 @@ class Tents():
         print("\nBOARD:")
         self.start.board.print_board()
 
-    def print_solution(self, output_file_name = None):
+    def print_solution(self, output_file_name = None, auto_output_path = None):
         if self.solution:
             print("\nSOLUTION BOARD: ")
             board_solved = self.solution[1][-1]
             board_solved.print_board()
             if output_file_name:
                 from draw_tent_board import draw_tents_board
-                draw_tents_board(board=board_solved, result_file_name=output_file_name)
+                draw_tents_board(board=board_solved, result_file_name=output_file_name, auto_output_path=auto_output_path)
 
 
     def print_node_state(self, game_node: GameNode):
@@ -190,6 +190,10 @@ def draw_board_as_image(board: BoardNode, filename="board.png"):
 
     for index, pos in enumerate(board.grid.values()):
         return
+
+def solve_from_input(input_file_name: str):
+    game = Tents(input_file_name)
+    game.solve()
 
 
 if __name__ == '__main__':
