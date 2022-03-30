@@ -1,0 +1,65 @@
+@startuml
+
+class Solver {
+    BoardNode[] explored_node 
+    Frontier frontier
+    solve() 
+    draw_result() 
+}
+Solver *-- frontier.FrontTier
+namespace gamenode {
+    class GameNode {
+        BoardNode board 
+        GameNode parent 
+        Action action_applied
+    } 
+    class HeuristicGameNode{
+        void calculate_heuristics()  
+    }
+    
+    GameNode <|-- HeuristicGameNode
+    GameNode *-- gameboard.BoardNode
+}
+
+namespace frontier {
+    class FrontTier {
+        GameNode[] frontier  
+        void add(GameNode node)
+        void remove(GameNode node)
+        boolean contains()  
+        boolean empty()
+    } 
+    class StackFrontier
+    class QueueFrontier 
+    class A_Star_Frontier     
+    FrontTier <|-- StackFrontier
+    FrontTier <|-- QueueFrontier
+    FrontTier <|-- A_Star_Frontier
+    
+    FrontTier *-- gamenode.GameNode
+}
+
+namespace gameboard {
+    class BoardNode {
+        PositionNode[] pos_dict
+    }
+    class PositionNode {
+        int x
+        int y 
+        __hash__() 
+    }
+    class TentNode
+    class TreeNode 
+    class ConstraintNode {
+        TYPE type
+        int num_of_tents_required 
+    } 
+    PositionNode <|-- TentNode
+    PositionNode <|-- TreeNode 
+    PositionNode <|-- ConstraintNode 
+    
+    BoardNode *-- PositionNode
+}
+
+
+@enduml
