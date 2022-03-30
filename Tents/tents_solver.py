@@ -4,7 +4,7 @@ import sys
 from classes.tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, A_Star_Frontier, \
     TentNode, TreeNode, get_node_char, Action, EMPTY_CHAR, TREE_CHAR, TENT_CHAR, StackFrontier
 import time
-# import resource
+import resource
 
 """
     _: the character to ignore (only valid at [0][0])
@@ -68,7 +68,8 @@ class Tents():
                                               tents={}, trees=self.tree_dict, constraints=self.contraints_dict),
                               parent=None, action=None)
 
-    def solve(self):
+
+    def solve(self, print_step_by_step = False):
         """Finds a solution to puzzle, if one exists."""
 
         # Keep track of number of states explored
@@ -92,6 +93,10 @@ class Tents():
             # Choose a node from the frontier
             node = frontier.remove()
             self.num_explored += 1
+
+            if print_step_by_step:
+                node.board.print_board()
+
             # If node is the goal, then we have a solution
             if self.solution_found:
                 actions = []
@@ -113,6 +118,7 @@ class Tents():
                 if not frontier.contains_state(board_applied_action) and board_applied_action not in self.explored:
                     child = GameNode(board=board_applied_action, parent=node, action=action)
                     frontier.add(child)
+
 
     def neighbors(self, board: BoardNode):
         actions = [Action(pos) for pos in board.possible_locations.values()]

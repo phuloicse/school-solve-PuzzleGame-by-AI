@@ -23,7 +23,7 @@ for puzzle_dir_name in os.listdir(input_path):
         # Init game and counter
         game = Tents(str(file))
         time_start = time.perf_counter()
-        resource_before = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        resouce_test = 1
         try:
             # Solve the game
             game.solve()
@@ -31,8 +31,8 @@ for puzzle_dir_name in os.listdir(input_path):
             print(f"Cannot solve puzzle {file}")
         # Read the counter values and substract
         time_elapsed = (time.perf_counter() - time_start)
-        resource_used = resource.getrusage(
-            resource.RUSAGE_SELF).ru_maxrss - resource_before
+        resource_used = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        # Resource accumulator
         total_time_elapsed += time_elapsed
         total_mem_used += resource_used
 
