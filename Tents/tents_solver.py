@@ -77,7 +77,7 @@ class Tents():
 
         # Initialize frontier to just the starting position
         self.current = self.start
-        frontier = StackFrontier()
+        frontier = A_Star_Frontier()
         frontier.add(self.current)
 
         # Initialize an empty explored set
