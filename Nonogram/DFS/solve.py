@@ -7,15 +7,13 @@ from Constraints import Constraints
 from PuzzleSolver import PuzzleSolver as Solver
 from PuzzleState import PuzzleState as State
 import time
+import resource
+# import psutil
+# sys.path.insert(0,'/mnt/f/OneDrive - hcmut.edu.vn/Using/School_Now/AI/BTL/solve-PuzzleGame-by-AI/Nonogram')
 # import resource
 
 def print_usage() -> None:
-    """
-    Prints usage information on how to run this program.
-    """
-
-    # TODO
-    print("usage")
+     print("Error, please try again on Linux or WSL. Try 'python3 solve.py  ./puzzles/(file name)' ")
 
 def process_puzzle(path: str) -> None:
     """
@@ -43,6 +41,10 @@ def process_puzzle(path: str) -> None:
         f.close()
 
     errors, instance = Constraints.validate_json(json_object)
+    print(str(instance.columns))
+    print(str(instance.height))
+    print(str(instance.rows))
+    print(str(instance.width))
     if errors:
         print("The configuration file is not valid.", file=sys.stderr)
         print("Errors:", file=sys.stderr)
@@ -62,12 +64,11 @@ def process_puzzle(path: str) -> None:
 
         print(solution)
 
-    from Nonogram.draw_nono_grams_board import draw_nono_board
-    draw_nono_board(solutions[-1])
+    # from Nonogram.draw_nono_grams_board import draw_nono_board
+    # draw_nono_board(solutions[-1])
 
 def main() -> None:
-    if len(sys.argv) < 2 or \
-       any(help_command in sys.argv for help_command in ["--help", "-h", "-?"]):
+    if len(sys.argv) < 2 :
         print_usage()
         return
     # Start clock
@@ -80,9 +81,11 @@ def main() -> None:
 
     # End Clock and get mem usage: (can only run on linux or wsl on windows /docker with linux)
     time_elapsed = (time.perf_counter() - time_start)
-    # memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    # print("%5.1f secs %5.1f MByte" % (time_elapsed, memB))
+    memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    print("%5.7f secs %5.7f MB " % (time_elapsed, memB/1000))
+
 
 if __name__ == "__main__":
     main()
 # process_puzzle(test)
+
