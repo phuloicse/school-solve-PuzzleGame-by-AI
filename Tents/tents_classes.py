@@ -445,7 +445,7 @@ class BoardNode():
     def get_whole_row(self, row_idx):
         return [PositionNode(row_idx, j) for j in range(1, self.width + 1)]
 
-    def remove_nodes_from_pos_list(self, nodes: dict | List[PositionNode] | Set[PositionNode]):
+    def remove_nodes_from_pos_list(self, nodes: dict or List[PositionNode] or Set[PositionNode]):
         possible_pos_set = set(self.possible_locations.values())
         set_to_remove = None
         if isinstance(nodes, dict):

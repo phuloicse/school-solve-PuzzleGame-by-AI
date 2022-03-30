@@ -49,9 +49,9 @@ class PuzzleSolver:
 
         self.state.set_row(row + 1, [None for _ in range(self.constraints.width)])
 
-    def save_state_as_img(self):
-        from Nonogram.draw_nono_grams_board import draw_nono_board
-        draw_nono_board(self.state)
+    # def save_state_as_img(self):
+    #     from Nonogram.draw_nono_grams_board import draw_nono_board
+    #     draw_nono_board(self.state)
 
     def solve(self) -> List[State]:
         self.state: State = State(self.constraints)
