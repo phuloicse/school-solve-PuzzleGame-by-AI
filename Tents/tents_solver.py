@@ -1,10 +1,11 @@
 import copy
 import sys
 
-from classes.tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, A_Star_Frontier, \
+from tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, A_Star_Frontier, \
     TentNode, TreeNode, get_node_char, Action, EMPTY_CHAR, TREE_CHAR, TENT_CHAR, StackFrontier
 import time
 import resource
+from draw_tent_board import draw_tents_board
 
 """
     _: the character to ignore (only valid at [0][0])
@@ -166,7 +167,6 @@ class Tents():
             board_solved = self.solution[1][-1]
             board_solved.print_board()
             if output_file_name:
-                from draw_tent_board import draw_tents_board
                 draw_tents_board(board=board_solved, result_file_name=output_file_name, auto_output_path=auto_output_path)
 
 
