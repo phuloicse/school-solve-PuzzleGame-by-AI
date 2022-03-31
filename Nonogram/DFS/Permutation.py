@@ -19,6 +19,7 @@ class Permutation:
         for block in range(1, len(blocks)):
             positions.append(positions[-1] + blocks[block - 1] + 1)
         self.cache[row] = []
+        # print()
         self._next_permutation(row, positions, len(positions) - 1)
         return self.cache[row]
 

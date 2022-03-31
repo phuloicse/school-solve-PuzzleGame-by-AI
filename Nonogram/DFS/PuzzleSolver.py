@@ -13,7 +13,7 @@ class PuzzleSolver:
     def __init__(self, constraints: Constraints) -> None:
         self.constraints: Constraints = constraints
         self.permutation: Permutation = Permutation(constraints)
-        self.counter = 1
+        # self.counter = 1
         
 
     def _depth_first_search(self, row: int) -> None:
@@ -22,12 +22,13 @@ class PuzzleSolver:
             self.max_row = row
             print("Row: {}, nodes: {}, nodes/s: {:.2f}".format(self.max_row, self.nodes,
                                                                self.nodes / (time.perf_counter() - self.start_time)))
-        # if you want to print out each step, uncomment below lines
-        # print("Step: " + str(self.step))
-        self.step += 1
-        # print(self.state)
+            
+        """ if you want to print out each step, uncomment below lines"""
+        
+        print("Step: " + str(self.step))
+        print(self.state)
         # time.sleep(0.2)
-
+        self.step += 1
         if not self.state.validate(row):
             return
         if len(self.solutions):
@@ -35,9 +36,9 @@ class PuzzleSolver:
         if row + 1 == self.constraints.height:
             self.solutions.append(copy.deepcopy(self.state))
             self.solutions.append(self.step)
-            print("Done " + str(self.counter) + "th solution")
-            print("Done " +str(self.step) +" step")
-            self.counter += 1
+            # print("Done " + str(self.counter) + "th solution")
+            print("Done after " +str(self.step) +" steps")
+            # self.counter += 1
             return
             # sys.exit()
             # found = True
