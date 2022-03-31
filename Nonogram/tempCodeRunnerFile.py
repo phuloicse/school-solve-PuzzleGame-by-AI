@@ -4,19 +4,21 @@ from matplotlib import pyplot as plt
 import pandas as pd
 
 
+
+
 BFS = pd.read_csv("New.csv",na_values=["???","??? "])
-Astar =pd.read_csv("New.csv",na_values=["???","??? "])
+# Astar =pd.read_csv("New.csv",na_values=["???","??? "])
 
 
 def drawChart(factor,map):
 	stepBFS = []
 	stepAstar = []
-	if (map == "MINI COSMOS"):
-		stepBFS = BFS[factor][1:41]
-		stepAstar = BFS[factor][1:41]
-	else:
-		stepBFS = BFS[factor][40:len(BFS)]
-		stepAstar = BFS[factor][40:len(BFS)]
+	# if (map == "MINI COSMOS"):
+	stepBFS = BFS[factor][0:10]
+		# stepAstar = BFS[factor][1:41]
+	# else:
+	# 	stepBFS = BFS[factor][40:len(BFS)]
+		# stepAstar = BFS[factor][40:len(BFS)]
 	#stepBFS_Mini = BFS[factor][1:40]
 	#stepAStar_Mini = Astar[factor][1:40]
 
@@ -43,14 +45,14 @@ def drawChart(factor,map):
 	# Make the plot
 	plt.bar(br1, stepBFS, color ='r', width = barWidth,
 			edgecolor ='grey', label ='BFS')
-	plt.bar(br2, stepAstar, color ='g', width = barWidth,
-			edgecolor ='grey', label ='A_star')
+	# plt.bar(br2, stepAstar, color ='g', width = barWidth,
+	# 		edgecolor ='grey', label ='A_star')
 	#plt.bar(br3, CSE, color ='b', width = barWidth,
 	#        edgecolor ='grey', label ='CSE')
 	
 	# Adding Xticks
 	ylab = ""
-	if (factor == "Step"):
+	if (factor == "steps"):
 		ylab = "Step"
 	elif (factor == "time_used"):
 		ylab = "sec"
@@ -78,8 +80,8 @@ def drawChart(factor,map):
 	save = ""
 	if (factor == "mem_used"):
 		save = "memory"
-	# elif (factor == "Step"):
-	# 	save = "step"
+	elif (factor == "steps"):
+		save = "step"
 	# elif (factor == "Node generated"):
 	# 	save = "nodeGenerated"
 	else:
@@ -89,9 +91,11 @@ def drawChart(factor,map):
 
 # drawChart("Step","MINI COSMOS")
 # drawChart("Step","MICRO COSMOS")
-drawChart("time_used", "MINI COSMOS")
+drawChart("time_used", "5x5")
 # drawChart("time_used", "MICRO COSMOS")
-drawChart("mem_used","MINI COSMOS")
+drawChart("mem_used","5x5")
+drawChart("steps","5x5")
+
 # drawChart("Memory (MB)","MICRO COSMOS")
 # drawChart("Node generated","MINI COSMOS")
 # drawChart("Node generated","MICRO COSMOS")

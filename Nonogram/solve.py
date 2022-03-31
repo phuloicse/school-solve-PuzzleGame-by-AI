@@ -15,7 +15,7 @@ import resource
 def print_usage() -> None:
      print("Error, please try again on Linux or WSL. Try 'python3 solve.py  ./puzzles/(file name)' ")
 
-def process_puzzle(path: str) -> None:
+def process_puzzle(path: str) -> int:
     """
     Processes one puzzle.
     The necessary steps are: Check the file, validate the contents, run the solver and 
@@ -41,10 +41,10 @@ def process_puzzle(path: str) -> None:
         f.close()
 
     errors, instance = Constraints.validate_json(json_object)
-    print(str(instance.columns))
-    print(str(instance.height))
-    print(str(instance.rows))
-    print(str(instance.width))
+    # print(str(instance.columns))
+    # print(str(instance.height))
+    # print(str(instance.rows))
+    # print(str(instance.width))
     if errors:
         print("The configuration file is not valid.", file=sys.stderr)
         print("Errors:", file=sys.stderr)
@@ -55,15 +55,11 @@ def process_puzzle(path: str) -> None:
     solver: Solver = Solver(instance)
     solutions: List[State] = solver.solve()
     
-    first = True
-    for index, solution in enumerate(solutions):
-        if not first:
-            print()
-        first = False
-        print("Solution {}/{}".format(index + 1, len(solutions)))
-
-        print(solution)
-
+    """Print Solution and number of step used"""
+    print("Solution found below:")
+    print(solutions[0])
+    print("Use " + str(solutions[1]) + " steps to solve")
+    return solutions[1]
     # from Nonogram.draw_nono_grams_board import draw_nono_board
     # draw_nono_board(solutions[-1])
 
