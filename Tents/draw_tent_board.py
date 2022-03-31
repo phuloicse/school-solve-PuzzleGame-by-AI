@@ -5,7 +5,6 @@ import random
 # from Tents.tents_and_tree import calculate_key
 from draw_utils import generate_number_text_image, get_num_path,get_tree_img_path, get_tent_img_path
 from tents_classes import BoardNode, TreeNode,ConstraintNode,PositionNode, TentNode, calculate_key
-from tents_solver import Tents
 def draw_grid(grid_tuple,cell_size,result_file_name="result.png"):
     width,height = grid_tuple
 
@@ -155,6 +154,8 @@ def draw_tents_board(board: BoardNode, cell_size = 100, result_file_name="board.
 
 def test_draw_board():
     path = os.path.join(os.curdir, "input/6x6/puzzle3.txt")
+    from tents_solver import Tents
+
     game = Tents(path)
     draw_tents_board(board = game.start.board,cell_size=100,result_file_name="board_test.png")
 

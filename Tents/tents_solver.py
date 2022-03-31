@@ -4,7 +4,7 @@ import sys
 from tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, PositionNode, A_Star_Frontier, \
     TentNode, TreeNode, get_node_char, Action, EMPTY_CHAR, TREE_CHAR, TENT_CHAR, StackFrontier
 import time
-import resource
+# import resource
 from draw_tent_board import draw_tents_board
 
 """
@@ -96,8 +96,10 @@ class Tents():
             self.num_explored += 1
 
             if print_step_by_step:
+                print(f"\nNode {self.num_explored}")
                 node.board.print_board()
-
+                result_file_name = f"Node_{self.num_explored}.png"
+                draw_tents_board(board=node.board, result_file_name=result_file_name, auto_output_path=None,draw_current_contstraints=True)
             # If node is the goal, then we have a solution
             if self.solution_found:
                 actions = []
@@ -109,6 +111,18 @@ class Tents():
                 actions.reverse()
                 boards.reverse()
                 self.solution = (actions, boards)
+                # if print_step_by_step:
+                #     print(f"\nNode solution {self.num_explored}")
+                #     for idx,board in enumerate(boards):   
+                #         board.print_board()
+                #         result_file_name = f"Node_solution_{idx}.png"
+                #         draw_tents_board(board=board, result_file_name=result_file_name, auto_output_path=None,draw_current_contstraints=True)
+
+
+                if print_step_by_step:
+                    print(f"\nSteps taken to solution:")
+                    for idx,action in enumerate(actions):   
+                        print(action)
                 return
 
             # Mark node as explored
@@ -206,15 +220,16 @@ if __name__ == '__main__':
 
     time_start = time.perf_counter()
 
-    if len(sys.argv) not in [2,3]:
-        sys.exit("Usage: python tents_solver.py input_file.txt  ||  python tents_solver.py input_file.txt output_file_name")
+    if len(sys.argv) not in [2,3,4]:
+        sys.exit("Usage: python tents_solver.py input_file.txt  ||  python tents_solver.py input_file.txt output_file_name || python tents_solver.py input_file.txt output_file_name track" )
 
     game = Tents(str(sys.argv[1]))
     print("Tents initialized: ")
     game.print()
 
+    track = str(sys.argv[3]) == "track"
     print("Trying to solve the puzzle")
-    game.solve()
+    game.solve(print_step_by_step=track)
     print("Num of state explored: ", game.num_explored)
     print("Solution: ", game.solution)
 
