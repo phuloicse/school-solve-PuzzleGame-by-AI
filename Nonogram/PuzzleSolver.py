@@ -25,8 +25,8 @@ class PuzzleSolver:
             
         """ if you want to print out each step, uncomment below lines"""
         
-        # print("Step: " + str(self.step))
-        # print(self.state)
+        print("Step: " + str(self.step))
+        print(self.state)
         # time.sleep(0.2)
         self.step += 1
 

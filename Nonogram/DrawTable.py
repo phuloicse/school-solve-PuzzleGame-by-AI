@@ -6,30 +6,22 @@ import pandas as pd
 
 
 
-BFS = pd.read_csv("New.csv",na_values=["???","??? "])
+DFS = pd.read_csv("New.csv",na_values=["???","??? "])
 # Astar =pd.read_csv("New.csv",na_values=["???","??? "])
 
 
 def drawChart(factor,map):
-	stepBFS = []
+	stepDFS = []
 	stepAstar = []
-	# if (map == "MINI COSMOS"):
-	stepBFS = BFS[factor][0:10]
-		# stepAstar = BFS[factor][1:41]
-	# else:
-	# 	stepBFS = BFS[factor][40:len(BFS)]
-		# stepAstar = BFS[factor][40:len(BFS)]
-	#stepBFS_Mini = BFS[factor][1:40]
-	#stepAStar_Mini = Astar[factor][1:40]
+	stepDFS = DFS[factor][0:10]
+	# stepAstar = DFS[factor][1:41]
 
-	#stepBFS_Micro = BFS[factor][40:len(BFS)]
-	#stepAstar_Micro = Astar[factor][40:len(BFS)]
 
 	barWidth = 0.25
 	fig = plt.subplots(figsize =(12, 8))
 
 	index = []
-	for i in range(0,len(stepBFS)):
+	for i in range(0,len(stepDFS)):
 			index.append(i+1)
 
 	# set height of bar
@@ -38,13 +30,13 @@ def drawChart(factor,map):
 	#CSE = [29, 3, 24, 25, 17]
 	
 	# Set position of bar on X axis
-	br1 = np.arange(len(stepBFS))
+	br1 = np.arange(len(stepDFS))
 	br2 = [x + barWidth for x in br1]
 	#br3 = [x + barWidth for x in br2]
 	
 	# Make the plot
-	plt.bar(br1, stepBFS, color ='r', width = barWidth,
-			edgecolor ='grey', label ='BFS')
+	plt.bar(br1, stepDFS, color ='r', width = barWidth,
+			edgecolor ='grey', label ='DFS')
 	# plt.bar(br2, stepAstar, color ='g', width = barWidth,
 	# 		edgecolor ='grey', label ='A_star')
 	#plt.bar(br3, CSE, color ='b', width = barWidth,
@@ -66,13 +58,11 @@ def drawChart(factor,map):
 	#plt.xticks([(r + barWidth) for r in range(len(IT))],
 	#        ['2015', '2016', '2017', '2018', '2019'])
 
-	plt.xticks([barWidth/2 + r for r in range(len(stepBFS))],index)
+	plt.xticks([barWidth/2 + r for r in range(len(stepDFS))],index)
 	if (factor == "mem_used"):
 		plt.title("The amount of memory used in " + map +  " Testcases")
 	elif (factor == "time_used"):
 		plt.title("The amount of time elapsed in " + map + " Testcases")
-	# elif (factor == "Node generated"):
-		# plt.title("The amount of node generated in " + map + " Testcases")
 	else:
 		plt.title("The number of " + factor + " taken in " + map + " Testcases")
 	plt.legend()
@@ -82,16 +72,12 @@ def drawChart(factor,map):
 		save = "memory"
 	elif (factor == "steps"):
 		save = "step"
-	# elif (factor == "Node generated"):
-	# 	save = "nodeGenerated"
 	else:
 		save = "time_used"
 	plt.savefig("./" + save + "_" + map + ".png")	
 
 
-# drawChart("Step","MINI COSMOS")
-# drawChart("Step","MICRO COSMOS")
+
 drawChart("time_used", "5x5")
-# drawChart("time_used", "MICRO COSMOS")
 drawChart("mem_used","5x5")
 drawChart("steps","5x5")

@@ -5,7 +5,7 @@ from tents_classes import BoardNode, BoardStateType, ConstraintNode, GameNode, P
     TentNode, TreeNode, get_node_char, Action, EMPTY_CHAR, TREE_CHAR, TENT_CHAR, StackFrontier
 import time
 import resource
-from draw_tent_board import draw_tents_board
+# from draw_tent_board import draw_tents_board
 
 """
     _: the character to ignore (only valid at [0][0])
@@ -166,8 +166,8 @@ class Tents():
             print("\nSOLUTION BOARD: ")
             board_solved = self.solution[1][-1]
             board_solved.print_board()
-            if output_file_name:
-                draw_tents_board(board=board_solved, result_file_name=output_file_name, auto_output_path=auto_output_path)
+            # if output_file_name:
+            #     draw_tents_board(board=board_solved, result_file_name=output_file_name, auto_output_path=auto_output_path)
 
 
     def print_node_state(self, game_node: GameNode):
@@ -214,7 +214,7 @@ if __name__ == '__main__':
     game.print()
 
     print("Trying to solve the puzzle")
-    game.solve()
+    game.solve(1)
     print("Num of state explored: ", game.num_explored)
     print("Solution: ", game.solution)
 
@@ -225,8 +225,8 @@ if __name__ == '__main__':
 
     # insert code here ...
     time_elapsed = (time.perf_counter() - time_start)
-    # memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    # print("%5.1f secs %5.1f MByte" % (time_elapsed, memB))
+    memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    print("%5.1f secs %5.1f Kb" % (time_elapsed, memB/1000))
 
 
 
