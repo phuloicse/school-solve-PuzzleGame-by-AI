@@ -95,3 +95,13 @@ drawChart("time_used", "5x5")
 # drawChart("time_used", "MICRO COSMOS")
 drawChart("mem_used","5x5")
 drawChart("steps","5x5")
+
+# drawChart("Memory (MB)","MICRO COSMOS")
+# drawChart("Node generated","MINI COSMOS")
+# drawChart("Node generated","MICRO COSMOS")
+
+# print(len(BFS))
+# print(BFS["Map"][len(BFS)-1])
+#print(BFS)
+#print(BFS["Step"].count())
+#print(BFS["Status"].count("Completed"))

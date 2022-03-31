@@ -55,16 +55,9 @@ def process_puzzle(path: str) -> int:
     solver: Solver = Solver(instance)
     solutions: List[State] = solver.solve()
     
-    # first = True
-    # for index, solution in enumerate(solutions):
-    #     if not first:
-    #         print()
-    #     first = False
-    #     print("Solution {}/{}".format(index + 1, len(solutions)))
-
-    #     print(solution)
-    print(solutions[0])
-    print(solutions[1])
+    """Print Solution and number of step used"""
+    # print(solutions[0])
+    # print(solutions[1])
     return solutions[1]
     # from Nonogram.draw_nono_grams_board import draw_nono_board
     # draw_nono_board(solutions[-1])
