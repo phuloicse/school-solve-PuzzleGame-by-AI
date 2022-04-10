@@ -4,7 +4,7 @@
 
 # Tents and Tree 
 * The game rules and samples can be found here: https://www.puzzle-tents.com/
-## How to run the solver 
+## How to run the solver in Tents
 ### Requirements: pillow lib installed and running on Python3.10 
 ### Step 1: Add the input to the game:
     **Example:**
