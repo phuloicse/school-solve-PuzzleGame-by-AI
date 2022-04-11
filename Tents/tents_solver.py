@@ -227,7 +227,8 @@ if __name__ == '__main__':
     print("Tents initialized: ")
     game.print()
 
-    track = str(sys.argv[3]) == "track"
+    # track = str(sys.argv[3]) == "track"
+    track = str(sys.argv[3])
     print("Trying to solve the puzzle")
     game.solve(print_step_by_step=track)
     print("Num of state explored: ", game.num_explored)

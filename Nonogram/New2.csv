@@ -1,0 +1,16 @@
+name,time_used,mem_used,steps
+./input/10x10/nono-1.json,0.0307706,10176,1894
+./input/10x10/nono-10.json,0.0388133,10176,2725
+./input/10x10/nono-2.json,0.0078736,10176,105
+./input/10x10/nono-3.json,0.0014779,10184,
+./input/10x10/nono-4.json,0.0294808,10212,1825
+./input/10x10/nono-5.json,0.0132488,10212,331
+./input/10x10/nono-6.json,0.0140492,10216,717
+./input/10x10/nono-7.json,0.0114255,10216,561
+./input/10x10/nono-8.json,0.2965137,10216,22189
+./input/10x10/nono-9.json,0.035096,10216,1899
+./input/Random/BKHorizon.json,0.0145593,10224,154
+./input/Random/Simple.json,0.0044302,10224,7
+./input/Random/Smile.json,0.0047849,10224,19
+./input/Random/Tick&Nazi.json,0.0096694,10224,102
+total,0.0334438,40896,

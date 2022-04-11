@@ -78,7 +78,7 @@ def main() -> None:
     # End Clock and get mem usage: (can only run on linux or wsl on windows /docker with linux)
     time_elapsed = (time.perf_counter() - time_start)
     memB = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    print("%5.7f secs %5.7f MB " % (time_elapsed, memB/1000))
+    print("%5.7f secs %5.7f MB " % (time_elapsed, memB))
 
 
 if __name__ == "__main__":

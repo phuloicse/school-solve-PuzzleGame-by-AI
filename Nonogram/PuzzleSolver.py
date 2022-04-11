@@ -2,6 +2,8 @@ from multiprocessing.connection import wait
 import sys
 from typing import List
 
+from matplotlib.pyplot import step
+
 from PuzzleState import PuzzleState as State
 from Constraints import Constraints
 from Permutation import Permutation
@@ -26,7 +28,9 @@ class PuzzleSolver:
         """ if you want to print out each step, uncomment below lines"""
         
         print("Step: " + str(self.step))
-        print(self.state)
+        if self.step < 40 or self.step > 70:
+            print(self.state)
+        # print(self.state)
         # time.sleep(0.2)
         self.step += 1
 
@@ -47,7 +51,8 @@ class PuzzleSolver:
         # print(self.state)
         for perm in self.permutation.get_permutations(row + 1):
             self.state.set_row(row + 1, perm)
-            self._depth_first_search(row + 1)
+            if len(self.solutions) < 1:
+                self._depth_first_search(row + 1)
 
         self.state.set_row(row + 1, [None for _ in range(self.constraints.width)])
 

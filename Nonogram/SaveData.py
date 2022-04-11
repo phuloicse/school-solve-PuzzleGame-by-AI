@@ -41,7 +41,7 @@ for puzzle_dir_name in os.listdir(input_path):
 
         # Save the gaem stat
         game_stat = {"name": file, "time_used": time_elapsed,
-                     "mem_used": resource_used/1000, "steps": save}
+                     "mem_used": resource_used, "steps": save}
         json_obj.append(game_stat)
         # Calculate output path
         # overriden_output_path = os.path.join(
@@ -55,7 +55,7 @@ for puzzle_dir_name in os.listdir(input_path):
 json_obj.append({"name":"total","time_used":total_time_elapsed,"mem_used":total_mem_used})
 json_text = json.dumps(json_obj)
 
-with open("data.json", "w") as f:
+with open("Newdata.json", "w") as f:
     f.write(json_text)
 
     # for puzzle_dir in lisdir:

@@ -6,7 +6,7 @@ import pandas as pd
 
 
 
-DFS = pd.read_csv("New.csv",na_values=["???","??? "])
+DFS = pd.read_csv("New2.csv",na_values=["???","??? "])
 # Astar =pd.read_csv("New.csv",na_values=["???","??? "])
 
 
@@ -51,7 +51,7 @@ def drawChart(factor,map):
 	# elif (factor == "Node generated"):
 		# ylab = "Node"
 	else:
-		ylab = "Kb"
+		ylab = "Byte"
 
 	plt.xlabel('TC', fontweight ='bold', fontsize = 15)
 	plt.ylabel(ylab, fontweight ='bold', fontsize = 15)
